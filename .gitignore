@@ -1,0 +1,35 @@
+# MPLAB X specific files and folders
+nbproject/private/
+nbproject/Makefile-*
+nbproject/Package-*.jar
+nbproject/*.log
+nbproject/configurations.xml.bak
+nbproject/project.xml.bak
+build/
+dist/
+.generated_files/
+*.o
+*.elf
+*.hex
+*.lst
+*.map
+*.cof
+*.srf
+*.mcw
+*.mcw.bak
+*.mcs
+*.mcs.bak
+*.mcp
+*.mcp.bak
+*.mcl
+*.mcl.bak
+*.pre
+*.dbg
+*.mem
+*.sym
+*.xml.bak
+*.log
+*.err
+*~
+# User-specific settings (if any)
+UserSettings/
