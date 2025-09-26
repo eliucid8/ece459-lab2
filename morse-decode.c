@@ -45,6 +45,8 @@ bool running = false;
 // track previous state of button
 bool pressed = false;
 
+uint8_t input_buf = 0;
+uint8_t input_count = 0;
 
 void main() {
     ANSEL = 0x00;
@@ -63,6 +65,11 @@ void main() {
     INTCONbits.RBIF = 0; // B register change interrupt flag (reset in software)
     IOCBbits.IOCB1 = 1; // enable interrupt on change of B1
     
+    // I like the idea of a morse tree, but i think the best solution in terms
+    // of memory is going to be a switch statement-like structure.
+    // this means we essentially save our morse tree into the program memory
+    
+    // 16x8 bits, 128
     uint8_t map_7seg[] = {
         0x3F, // 0
         0x06, // 1
@@ -139,10 +146,15 @@ void __interrupt() isr() {
             PORTC = ERROR_SEGMENTS;
         }
         if(counter > DOT_DASH_THRESHOLD && counter <= DASH_HIGH_THRESHOLD) {
-            PORTC = DASH_SEGMENTS;
+            // shift left and set lsb to 1.
+            input_buf <<= 1;
+            input_buf |= 1;
+            input_count += 1;
         }
         if(counter >= DOT_LOW_THRESHOLD && counter <= DOT_DASH_THRESHOLD) {
-            PORTC = DOT_SEGMENTS;
+            // shift left (and nset lsb to 0)
+            input_buf <<= 1;
+            input_count += 1;
         }
         if(counter < DOT_LOW_THRESHOLD) {
             PORTC = ERROR_SEGMENTS;

@@ -18,6 +18,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>dashdot.c</itemPath>
+      <itemPath>morse-decode.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -179,6 +180,8 @@
         <property key="user-pack-device-support" value=""/>
         <property key="wpo-lto" value="false"/>
       </XC8-config-global>
+      <item path="morse-decode.c" ex="true" overriding="false">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>
